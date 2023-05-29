@@ -23,24 +23,23 @@ public class FoodTruckApp {
 
 		while (running) {
 
-			System.out
-					.println("Hello, please enter the name of the food truck that you visted, up to 5 different trucks,"
-							+ " or enter 'Quit' to enter the the next menu : ");
+			System.out.println("Hello, welcome to the Amazing Food Truck survey,\n"
+					+ "please enter the name of the food truck that you visted, up to 5 different trucks,\n"
+					+ "or enter 'Quit' to enter the the next menu : ");
 			String foodTruckName = kb.next();
 			if (foodTruckName.equalsIgnoreCase("Quit")) {
 				while (subRunning) {
-					System.out.println("please choose from the below menu");
+					System.out.println("Please choose from the below menu");
 					System.out.println("1. List all existing food trucks.");
 					System.out.println("2. See the average rating of food trucks.");
 					System.out.println("3. Display the highest-rated food truck.");
-					System.out.println("4. Quit the program.");
+					System.out.println("4. Quit the Survey.");
 					int userInput = kb.nextInt();
 					System.out.println();
 					if (userInput == 1) {
 						System.out.println("Here is the current list of Trucks: ");
 						for (FoodTruck numTrucks : fleet) {
 							if (numTrucks != null) {
-
 								System.out.println(numTrucks);
 							}
 						}
