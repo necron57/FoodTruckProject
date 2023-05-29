@@ -16,16 +16,18 @@ public class FoodTruckApp {
 
 	}
 
-	public void run() {
+	private void run() {
 		Scanner kb = new Scanner(System.in);
 		boolean running = true;
 		boolean subRunning = true;
 
 		while (running) {
 
-			System.out.println("please enter the name of the food truck or enter 'Quit' to leave: ");
+			System.out
+					.println("Hello, please enter the name of the food truck that you visted, up to 5 different trucks,"
+							+ " or enter 'Quit' to enter the the next menu : ");
 			String foodTruckName = kb.next();
-			if (foodTruckName.equals("Quit")) {
+			if (foodTruckName.equalsIgnoreCase("Quit")) {
 				while (subRunning) {
 					System.out.println("please choose from the below menu");
 					System.out.println("1. List all existing food trucks.");
@@ -43,40 +45,21 @@ public class FoodTruckApp {
 							}
 						}
 					} else if (userInput == 2) {
-						System.out.println("The average rating for the food trucks is: ");
-						double average = 0;
-						int total = 0;
-						for (FoodTruck numTrucks : fleet) {
-							if (numTrucks != null) {
-								average += numTrucks.getFoodTruckRating();
-								total++;
-							}
-						}
-						System.out.println(average / total);
+						printAverage();
 					} else if (userInput == 3) {
-						System.out.println("the Highest-Rated food truck is:");
-						int highestRated = 0;
-						int lowestRated = 0;
-						for (FoodTruck numTrucks : fleet) {
-							if (numTrucks != null) {
-								highestRated = numTrucks.getFoodTruckRating();
-								System.out.println(numTrucks);
-								if (highestRated > lowestRated) {
-
-								}
-							}
-						}
+						printHighestRated();
 					} else if (userInput == 4) {
-						System.out.println("Leaving the Menu options screen!");
+						System.out.println("GoodBye Thank you for taking the Amazing Food Truck survey!");
 						subRunning = false;
 					}
 				}
 
+				break;
 			}
-			System.out.println("please enter the kind of food that was served: ");
+			System.out.println("Please enter the kind of food that was served: ");
 			String foodType = kb.next();
 
-			System.out.println("please enter the rating you would give this truck: ");
+			System.out.println("Please enter the rating you would give this truck: ");
 			int foodTruckRating = kb.nextInt();
 
 			FoodTruck foodTruck = new FoodTruck(foodTruckName, foodType, foodTruckRating);
@@ -84,12 +67,42 @@ public class FoodTruckApp {
 			numTrucks++;
 			if (numTrucks == MAX_TRUCKS) {
 				for (FoodTruck numTrucks : fleet) {
+					System.out.println("Here are the full survey results listed below. Have a wonderful day!");
 					System.out.println(numTrucks);
+					running = false;
 				}
 			}
 		}
 		kb.close();
 
+	}
+
+	private void printAverage() {
+
+		System.out.println("The average rating for the food trucks is: ");
+		double average = 0;
+		int total = 0;
+		for (FoodTruck numTrucks : fleet) {
+			if (numTrucks != null) {
+				average += numTrucks.getFoodTruckRating();
+				total++;
+			}
+		}
+		System.out.println(average / total);
+	}
+
+	private void printHighestRated() {
+		System.out.println("the Highest-Rated food truck is:");
+		FoodTruck highestRated = fleet[0];
+		for (FoodTruck numTrucks : fleet) {
+			if (numTrucks != null) {
+				if (highestRated.getFoodTruckRating() < numTrucks.getFoodTruckRating()) {
+					highestRated = numTrucks;
+
+				}
+			}
+		}
+		System.out.println(highestRated);
 	}
 
 }
