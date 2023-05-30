@@ -14,7 +14,7 @@ Eclipse
 
 
 # Lessons Learned
-Learned how to properly use nested if/while that utilized methods and user input.
+Learned how to properly use nested if/while loops that utilized methods and user input.
 
 Learned how set up a seperate class that took in user input and constructed that input into readable output.
 
